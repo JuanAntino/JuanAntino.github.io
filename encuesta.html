@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <title>Encuesta de satisfacción</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            width: 100%;
+            height: 100vh;
+            margin: 0;
+            background-color:rgb(60, 59, 59);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 16px;
+        }
+        h1, p, label, legend {
+            color: white;
+            text-align: center;
+        }
+        hr {
+            background-color: gray;
+            margin: 10px 0;
+        }
+        fieldset {
+            padding: 1rem 0;
+            border: 3px solid rgb(6, 6, 141);
+            text-align: center;
+        }
+        form {
+            width: 60vw;
+            max-width: 500px;
+            min-width: 300px;
+            margin: 0 auto;
+        }
+        button {
+            text-align: center;
+        }
+        input, textarea {
+            background-color: #c3c3e3;
+            border: 1px solid #0a0a23;
+            color: #ffffff;
+}
+    </style>
+  </head>
+  <body>
+    <h1 id="title">Encuesta de satisfacción</h1>
+    <p id="description">Por favor, complete la siguiente encuesta para ayudarnos a mejorar nuestros servicios:</p>
+    <form id="survey-form">
+      <label id="name-label" for="name">Nombre:</label>
+      <input type="text" id="name" name="name" placeholder="Ingrese su nombre" required>
+      <br>
+      <br>
+      <label id="email-label" for="email">Correo electrónico:</label>
+      <input type="email" id="email" name="email" placeholder="Ingrese su correo electrónico" required>
+      <br>
+      <br>
+      <label id="number-label" for="number">Número de teléfono:</label>
+      <input type="number" id="number" name="number" placeholder="Ingrese su número de teléfono" min="0" max="999999999" required>
+      <br>
+      <br>
+      <label for="dropdown">Selecciona un país:</label>
+      <select id="dropdown" name="dropdown">
+        <option value="brasil">Brasil</option>
+        <option value="españa">España</option>
+        <option value="emiratos arabes">Emiratos Arabes</option>
+        <option value="venezuela">Venezuela</option>
+      </select>
+      <br>
+      <br>
+      <fieldset>
+        <legend>¿Cuál es tu deporte favorito?</legend>
+        <label>
+          <input type="radio" name="sport" value="futbol">Fútbol
+        </label>
+        <label>
+          <input type="radio" name="sport" value="tenis">Tenis
+        </label>
+        <label>
+          <input type="radio" name="sport" value="basquet">Básquet
+        </label>
+      </fieldset>
+      <br>
+      <br>
+      <fieldset>
+        <legend>¿Qué tipo de películas prefieres?</legend>
+        <label>
+          <input type="checkbox" name="movies" value="accion">Acción
+        </label>
+        <label>
+          <input type="checkbox" name="movies" value="comedia">Comedia
+        </label>
+        <label>
+          <input type="checkbox" name="movies" value="drama">Drama
+        </label>
+        <label>
+          <input type="checkbox" name="movies" value="terror">Terror
+        </label>
+      </fieldset>
+      <br>
+      <br>
+      <label for="comments">Comentarios adicionales:</label>
+      <textarea id="comments" name="comments" rows="3" cols="30" placeholder="Ingrese sus comentarios"></textarea>
+      <br>
+      <br>
+      <button type="submit" id="submit">Enviar</button>
+    </form>
+  </body>
+</html>
