@@ -1,0 +1,497 @@
+# Respuestas a los Ejercicios Cuaderno 2
+
+#Ejercicio 1 - ListaTareas
+
+#En este ejercicio, se quiere almacenar una lista de tareas pendientes. Aquí tienes las respuestas a las preguntas que has planteado:
+
+#¿Qué tipo de dato se quiere almacenar?
+#Se quiere almacenar una lista de tareas pendientes. Cada tarea es una cadena de texto (str).
+
+#¿Qué estructura de dato es la adecuada?
+#La estructura de dato adecuada para almacenar una lista de tareas pendientes es una lista de cadenas de texto (str).
+
+#¿Cuánto ocupa nuestra solución en espacio por usuario?
+#El espacio ocupado por usuario dependerá de la cantidad de tareas que el usuario agregue a la lista. Cada tarea es una cadena de texto, y su tamaño dependerá de la longitud de la cadena y de la codificación utilizada para almacenarla en memoria. Además, habrá una pequeña sobrecarga de espacio para mantener la estructura de la clase ListaTareas y sus métodos. En general, el espacio ocupado por usuario será relativamente pequeño en comparación con la cantidad de tareas que se pueden almacenar.
+
+#A continuación, te proporciono el programa que resuelve el enunciado:
+
+class ListaTareas:
+    def __init__(self):
+        self.tareas = []
+
+    def agregar_tarea(self, tarea):
+        self.tareas.append(tarea)
+        return "Tarea agregada con éxito."
+
+    def eliminar_tarea(self, tarea='', indice=0):
+        if tarea:
+            try:
+                self.tareas.remove(tarea)
+                return f"Tarea '{tarea}' eliminada con éxito."
+            except ValueError:
+                return f"No se encontró la tarea '{tarea}' en la lista."
+        elif indice >= 0 and indice < len(self.tareas):
+            tarea_eliminada = self.tareas.pop(indice)
+            return f"Tarea '{tarea_eliminada}' eliminada con éxito."
+        else:
+            return "Índice no válido."
+
+    def ver_lista(self):
+        if len(self.tareas) == 0:
+            return "La lista de tareas está vacía."
+        else:
+            lista_formateada = "\n".join(self.tareas)
+            return f"Lista de tareas:\n{lista_formateada}"
+
+# Ejemplo:
+lista_tareas = ListaTareas()
+print(lista_tareas.agregar_tarea("Hacer la compra"))
+print(lista_tareas.agregar_tarea("Estudiar para el examen"))
+print(lista_tareas.eliminar_tarea("Hacer la compra"))
+print(lista_tareas.eliminar_tarea())  # Borra el elemento 0
+print(lista_tareas.ver_lista())
+
+#Ejercicio 2 de la Calculadora de Promedio
+
+#¿Qué tipo de dato se quiere almacenar?
+#Se quiere almacenar calificaciones de estudiantes, que generalmente son números decimales (float) que representan las puntuaciones obtenidas en exámenes u otras evaluaciones académicas.
+
+#¿Qué estructura de dato es la adecuada?
+#La estructura de datos adecuada para almacenar una lista de calificaciones de estudiantes es una lista de números decimales (float) en Python.
+
+#¿Cuánto ocupa nuestra solución en espacio por usuario?
+#El espacio ocupado por usuario dependerá de la cantidad de calificaciones que el usuario ingrese en la lista. Cada calificación es un número decimal, que generalmente ocupa 8 bytes en la memoria de Python. Además, habrá una pequeña sobrecarga de espacio para mantener la estructura de la clase CalculadoraPromedio y sus métodos. En general, el espacio ocupado por usuario será relativamente pequeño en comparación con la cantidad de calificaciones que se pueden almacenar.
+
+#A continuación, te proporciono el programa que resuelve el enunciado:
+
+class CalculadoraPromedio:
+    def __init__(self):
+        self.calificaciones = []
+
+    def agregar_calificacion(self, calificacion):
+        if isinstance(calificacion, (int, float)):
+            self.calificaciones.append(calificacion)
+            return "Calificación agregada con éxito."
+        else:
+            return "La calificación debe ser un número."
+
+    def calcular_promedio(self):
+        if len(self.calificaciones) == 0:
+            return "No hay calificaciones para calcular el promedio."
+        else:
+            promedio = sum(self.calificaciones) / len(self.calificaciones)
+            return promedio
+
+# Ejemplo:
+calculadora = CalculadoraPromedio()
+
+# Agregar calificaciones
+print(calculadora.agregar_calificacion(8.5))
+print(calculadora.agregar_calificacion(9.2))
+print(calculadora.agregar_calificacion(7.8))
+print(calculadora.agregar_calificacion(9.0))
+print(calculadora.agregar_calificacion(8.8))
+
+# Calcular el promedio
+promedio = calculadora.calcular_promedio()
+
+# Imprimir el resultado
+if isinstance(promedio, (int, float)):
+    print(f"El promedio de las calificaciones es: {promedio}")
+else:
+    print(promedio)
+
+#Ejercicio 3 de la Lista de Reproducción de Canciones
+
+#¿Qué tipo de dato se quiere almacenar?
+#Se quiere almacenar una lista de canciones, donde cada canción es una cadena de texto (str).
+
+#¿Qué estructura de dato es la adecuada?
+#La estructura de datos adecuada para almacenar una lista de canciones es una lista de cadenas de texto (str) en Python.
+
+#¿Cuánto ocupa nuestra solución en espacio por usuario?
+#El espacio ocupado por usuario dependerá de la cantidad de canciones que el usuario agregue a la lista. Cada canción es una cadena de texto, y su tamaño dependerá de la longitud de la cadena y de la codificación utilizada para almacenarla en memoria. Además, habrá una pequeña sobrecarga de espacio para mantener la estructura de la clase ListaReproduccion y sus métodos. En general, el espacio ocupado por usuario será relativamente pequeño en comparación con la cantidad de canciones que se pueden almacenar.
+
+#A continuación, te proporciono el programa que resuelve el enunciado:
+
+class ListaReproduccion:
+    def __init__(self):
+        self.lista_canciones = []
+
+    def agregar_cancion(self, cancion):
+        self.lista_canciones.append(cancion)
+
+    def eliminar_cancion(self, cancion):
+        if cancion in self.lista_canciones:
+            self.lista_canciones.remove(cancion)
+
+    def reproducir_lista(self):
+        if len(self.lista_canciones) == 0:
+            print("La lista de reproducción está vacía.")
+        else:
+            print("Lista de Reproducción:")
+            for i, cancion in enumerate(self.lista_canciones, start=1):
+                print(f"{i}. {cancion}")
+
+# Ejemplo:
+lista_reproduccion = ListaReproduccion()
+
+# Agregar canciones
+lista_reproduccion.agregar_cancion("Canción 1")
+lista_reproduccion.agregar_cancion("Canción 2")
+lista_reproduccion.agregar_cancion("Canción 3")
+
+# Eliminar una canción
+lista_reproduccion.eliminar_cancion("Canción 2")
+
+# Reproducir la lista
+lista_reproduccion.reproducir_lista()
+
+
+#Ejercicio 4 del Gestor de Contactos
+
+#¿Qué tipo de dato se quiere almacenar?
+#Se quiere almacenar información de contactos, que generalmente incluye el nombre y el número de teléfono de la persona. Por lo tanto, se deben almacenar cadenas de texto (str) para el nombre y números de teléfono (que podrían representarse como cadenas o números, dependiendo de los requisitos del programa).
+
+#¿Qué estructura de dato es la adecuada?
+#La estructura de datos adecuada para almacenar una lista de contactos con información como el nombre y el número de teléfono es un diccionario en Python. El nombre del contacto se puede utilizar como clave y el número de teléfono como valor asociado a esa clave.
+
+#¿Cuánto ocupa nuestra solución en espacio por usuario?
+#El espacio ocupado por usuario dependerá de la cantidad de contactos que el usuario agregue a la lista. Cada contacto se compone de un nombre (cadena de texto) y un número de teléfono (cadena de texto o número, que ocupará espacio adicional en memoria). Además, habrá una pequeña sobrecarga de espacio para mantener la estructura de la clase GestorContactos y sus métodos, así como para almacenar las claves en el diccionario. En general, el espacio ocupado por usuario será relativamente pequeño en comparación con la cantidad de contactos que se pueden almacenar.
+
+#A continuación, te proporciono el programa que resuelve el enunciado:
+
+class GestorContactos:
+    def __init__(self):
+        self.contactos = {}
+
+    def agregar_contacto(self, nombre, telefono):
+        if nombre not in self.contactos:
+            self.contactos[nombre] = telefono
+            print(f"Contacto '{nombre}' agregado con éxito.")
+        else:
+            print(f"El contacto '{nombre}' ya existe en la lista.")
+
+    def buscar_contacto(self, nombre):
+        if nombre in self.contactos:
+            telefono = self.contactos[nombre]
+            return f"Teléfono de {nombre}: {telefono}"
+        else:
+            return f"No se encontró el contacto '{nombre}' en la lista."
+
+    def eliminar_contacto(self, nombre):
+        if nombre in self.contactos:
+            del self.contactos[nombre]
+            print(f"Contacto '{nombre}' eliminado con éxito.")
+        else:
+            print(f"No se encontró el contacto '{nombre}' en la lista.")
+
+# Ejemplo:
+gestor_contactos = GestorContactos()
+
+# Agregar contactos
+gestor_contactos.agregar_contacto("Juan", "123456789")
+gestor_contactos.agregar_contacto("María", "987654321")
+gestor_contactos.agregar_contacto("Carlos", "555555555")
+
+# Buscar un contacto
+contacto = gestor_contactos.buscar_contacto("Juan")
+print(contacto)
+
+# Eliminar un contacto
+gestor_contactos.eliminar_contacto("Carlos")
+
+
+#Ejercicio 5 de la Cola de Impresión
+
+#¿Qué tipo de dato se quiere almacenar?
+#Se quiere almacenar trabajos de impresión, que generalmente son nombres de archivos o documentos. Por lo tanto, se deben almacenar cadenas de texto (str) que representen los trabajos de impresión.
+
+#¿Qué estructura de dato es la adecuada?
+#La estructura de datos adecuada para simular una cola FIFO de trabajos de impresión es una lista en Python. Los trabajos de impresión se agregan al final de la lista y se imprimen en orden, siguiendo el principio "primero en entrar, primero en salir" de una cola.
+
+#¿Cuánto ocupa nuestra solución en espacio por usuario?
+#El espacio ocupado por usuario dependerá de la cantidad de trabajos de impresión que el usuario agregue a la cola. Cada trabajo de impresión es una cadena de texto que ocupa espacio en memoria. Además, habrá una pequeña sobrecarga de espacio para mantener la estructura de la clase ColaDeImpresion y sus métodos. En general, el espacio ocupado por usuario será relativamente pequeño en comparación con la cantidad de trabajos de impresión que se pueden almacenar.
+
+#A continuación, te proporciono el programa que resuelve el enunciado:
+
+class ColaDeImpresion:
+    def __init__(self):
+        self.cola = []
+
+    def agregar_trabajo(self, trabajo):
+        self.cola.append(trabajo)
+
+    def imprimir_trabajos(self):
+        if len(self.cola) == 0:
+            print("La cola de impresión está vacía.")
+        else:
+            print("Imprimiendo trabajos:")
+            for trabajo in self.cola:
+                print(trabajo)
+            # Vaciar la cola después de imprimir
+            self.cola = []
+
+# Ejemplo:
+cola_impresion = ColaDeImpresion()
+
+# Agregar trabajos de impresión
+cola_impresion.agregar_trabajo("Documento1.pdf")
+cola_impresion.agregar_trabajo("Imagen2.jpg")
+cola_impresion.agregar_trabajo("Presentacion3.ppt")
+
+# Imprimir los trabajos en orden FIFO
+cola_impresion.imprimir_trabajos()
+
+
+#Ejercicio 6 del Inventario de Productos
+
+#¿Qué tipo de dato se quiere almacenar?
+#Se quiere almacenar información sobre productos, que generalmente incluye el nombre del producto (cadena de texto - str) y la cantidad disponible en inventario (número entero - int).
+
+#¿Qué estructura de dato es la adecuada?
+#La estructura de datos adecuada para administrar un inventario de productos es un diccionario en Python. Puedes utilizar el nombre del producto como clave y la cantidad disponible como valor asociado a esa clave.
+
+#¿Cuánto ocupa nuestra solución en espacio por usuario?
+#El espacio ocupado por usuario dependerá de la cantidad de productos y sus nombres que el usuario agregue al inventario. Cada nombre de producto es una cadena de texto, que ocupa espacio en memoria. Además, cada cantidad de producto es un número entero, que también ocupa espacio adicional en memoria. Habrá una pequeña sobrecarga de espacio para mantener la estructura de la clase InventarioProductos y sus métodos, así como para almacenar las claves y valores en el diccionario. En general, el espacio ocupado por usuario será relativamente pequeño en comparación con la cantidad de productos y sus cantidades que se pueden almacenar.
+
+#A continuación, te proporciono el programa que resuelve el enunciado:
+class InventarioProductos:
+    def __init__(self):
+        self.inventario = {}
+
+    def agregar_producto(self, nombre, cantidad):
+        if nombre not in self.inventario:
+            self.inventario[nombre] = cantidad
+        else:
+            # Si el producto ya existe, se suma la cantidad existente
+            self.inventario[nombre] += cantidad
+
+    def actualizar_cantidad(self, nombre, nueva_cantidad):
+        if nombre in self.inventario:
+            self.inventario[nombre] = nueva_cantidad
+        else:
+            print(f"El producto '{nombre}' no existe en el inventario.")
+
+    def buscar_producto(self, nombre):
+        if nombre in self.inventario:
+            return self.inventario[nombre]
+        else:
+            print(f"El producto '{nombre}' no existe en el inventario.")
+
+# Ejemplo:
+inventario = InventarioProductos()
+
+# Agregar nuevos productos al inventario
+inventario.agregar_producto("Camisetas", 50)
+inventario.agregar_producto("Pantalones", 30)
+inventario.agregar_producto("Zapatos", 20)
+
+# Actualizar la cantidad de un producto existente
+inventario.actualizar_cantidad("Camisetas", 60)
+
+# Buscar un producto por su nombre
+cantidad_camisetas = inventario.buscar_producto("Camisetas")
+if cantidad_camisetas is not None:
+    print("Cantidad de Camisetas en inventario:", cantidad_camisetas)
+
+#Ejercicio 7 de la Lista de Reproducción de Videos
+
+#¿Qué tipo de dato se quiere almacenar?
+#Se quiere almacenar información sobre videos, que generalmente incluye el nombre o la ubicación del video (cadena de texto - str).
+
+#¿Qué estructura de dato es la adecuada?
+#La estructura de datos adecuada para administrar una lista de reproducción de videos es una lista en Python. Los videos se agregan al final de la lista y se reproducen en orden, siguiendo el principio "primero en entrar, primero en salir" de una cola.
+
+#¿Cuánto ocupa nuestra solución en espacio por usuario?
+#El espacio ocupado por usuario dependerá de la cantidad de videos y sus nombres que el usuario agregue a la lista de reproducción. Cada nombre de video es una cadena de texto, que ocupa espacio en memoria. Además, habrá una pequeña sobrecarga de espacio para mantener la estructura de la clase ListaReproduccionVideos y sus métodos, así como para almacenar los nombres de los videos en la lista. En general, el espacio ocupado por usuario será relativamente pequeño en comparación con la cantidad de videos que se pueden almacenar.
+
+#A continuación, te proporciono el programa que resuelve el enunciado:
+
+class ListaReproduccionVideos:
+    def __init__(self):
+        self.lista_videos = []
+
+    def agregar_video(self, video):
+        self.lista_videos.append(video)
+
+    def eliminar_video(self, video):
+        if video in self.lista_videos:
+            self.lista_videos.remove(video)
+
+    def reproducir_videos(self):
+        if len(self.lista_videos) == 0:
+            print("La lista de reproducción está vacía.")
+        else:
+            print("Reproduciendo videos:")
+            for video in self.lista_videos:
+                print(video)
+
+# Ejemplo:
+lista_reproduccion = ListaReproduccionVideos()
+
+# Agregar nuevos videos a la lista de reproducción
+lista_reproduccion.agregar_video("Video1.mp4")
+lista_reproduccion.agregar_video("Video2.mp4")
+lista_reproduccion.agregar_video("Video3.mp4")
+
+# Eliminar un video existente de la lista de reproducción
+lista_reproduccion.eliminar_video("Video2.mp4")
+
+# Reproducir los videos en orden de la lista de reproducción
+lista_reproduccion.reproducir_videos()
+
+
+#Ejercicio 8 de la Calculadora Simple
+
+#¿Qué tipo de dato se quiere almacenar?
+#Se quiere almacenar el resultado de las operaciones realizadas en la calculadora, que generalmente es un número decimal (float).
+
+#¿Qué estructura de dato es la adecuada?
+#En este caso, no se necesita una estructura de datos compleja más allá del tipo de dato utilizado para almacenar el resultado. Puedes usar una variable de tipo float para almacenar el resultado actual de las operaciones.
+
+#¿Cuánto ocupa nuestra solución en espacio por usuario?
+#El espacio ocupado por usuario dependerá únicamente del resultado actual de la calculadora, que se almacena en una variable de tipo float. No hay una sobrecarga significativa de espacio para mantener la estructura de la clase CalculadoraSimple y sus métodos. En general, el espacio ocupado por usuario será mínimo en comparación con otros elementos almacenados en la calculadora.
+
+#A continuación, te proporciono el programa que resuelve el enunciado:
+class CalculadoraSimple:
+    def __init__(self):
+        self.resultado = 0.0
+
+    def sumar(self, numero):
+        self.resultado += numero
+
+    def restar(self, numero):
+        self.resultado -= numero
+
+    def multiplicar(self, numero):
+        self.resultado *= numero
+
+    def dividir(self, numero):
+        if numero != 0:
+            self.resultado /= numero
+        else:
+            print("Error: División por cero.")
+
+    def obtener_resultado(self):
+        return self.resultado
+
+# Ejemplo:
+calculadora = CalculadoraSimple()
+
+# Realizar operaciones
+calculadora.sumar(5)
+calculadora.multiplicar(3)
+calculadora.restar(2)
+calculadora.dividir(4)
+
+# Obtener el resultado actual
+resultado = calculadora.obtener_resultado()
+print("Resultado:", resultado)
+
+#Ejercicio 9 de la Cola de Atención al Cliente
+
+#¿Qué tipo de dato se quiere almacenar?
+#Se quiere almacenar solicitudes de atención al cliente, que generalmente son cadenas de texto (str) que representan la naturaleza de la solicitud o algún identificador.
+
+#¿Qué estructura de dato es la adecuada?
+#La estructura de datos adecuada para simular una cola FIFO de solicitudes de atención al cliente es una lista en Python. Las solicitudes se agregan al final de la lista y se atienden en el orden en que se agregaron, siguiendo el principio "primero en entrar, primero en salir" de una cola.
+
+#¿Cuánto ocupa nuestra solución en espacio por usuario?
+#El espacio ocupado por usuario dependerá de la cantidad de solicitudes de atención al cliente que el usuario agregue a la cola. Cada solicitud es una cadena de texto (str) que ocupa espacio en memoria. Además, habrá una pequeña sobrecarga de espacio para mantener la estructura de la clase ColaAtencionCliente y sus métodos, así como para almacenar las solicitudes en la lista. En general, el espacio ocupado por usuario será relativamente pequeño en comparación con la cantidad de solicitudes que se pueden almacenar.
+
+#A continuación, te proporciono el programa que resuelve el enunciado:
+class ColaAtencionCliente:
+    def __init__(self):
+        self.cola = []
+
+    def agregar_solicitud(self, solicitud):
+        self.cola.append(solicitud)
+
+    def atender_solicitud(self):
+        if len(self.cola) == 0:
+            print("La cola de solicitudes está vacía.")
+        else:
+            solicitud_atendida = self.cola.pop(0)
+            return solicitud_atendida
+
+    def ver_cola(self):
+        if len(self.cola) == 0:
+            print("La cola de solicitudes está vacía.")
+        else:
+            print("Cola de solicitudes:")
+            for solicitud in self.cola:
+                print(solicitud)
+
+# Ejemplo:
+cola = ColaAtencionCliente()
+
+# Agregar solicitudes
+cola.agregar_solicitud("Solicitud 1")
+cola.agregar_solicitud("Solicitud 2")
+cola.agregar_solicitud("Solicitud 3")
+
+# Ver la cola
+cola.ver_cola()
+
+# Atender solicitudes en orden
+solicitud_atendida = cola.atender_solicitud()
+print("Solicitud atendida:", solicitud_atendida)
+
+solicitud_atendida = cola.atender_solicitud()
+print("Solicitud atendida:", solicitud_atendida)
+
+# Ver la cola actualizada
+cola.ver_cola()
+
+#Ejercicio 10 de Gestión de Tareas de Proyecto
+#¿Qué tipo de dato se quiere almacenar?
+#Se quiere almacenar información sobre tareas de proyecto, que generalmente incluye el nombre o la descripción de la tarea (cadena de texto - str) y su estado de completitud (booleano - bool).
+
+#¿Qué estructura de dato es la adecuada?
+#La estructura de datos adecuada para gestionar una lista de tareas de proyecto es una lista de diccionarios en Python. Cada diccionario contendrá la información de una tarea, incluyendo su nombre y estado de completitud.
+
+#¿Cuánto ocupa nuestra solución en espacio por usuario?
+#El espacio ocupado por usuario dependerá de la cantidad de tareas que el usuario agregue al proyecto y de la cantidad de información asociada a cada tarea. En este caso, cada tarea se representa como un diccionario, lo que implica un ligero aumento en el consumo de memoria en comparación con una lista simple. Además, se necesita espacio para mantener la estructura de la clase GestorTareasProyecto y sus métodos. En general, el espacio ocupado por usuario será relativamente pequeño en comparación con la cantidad de tareas que se pueden administrar.
+
+#A continuación, te proporciono el programa que resuelve el enunciado:
+
+class GestorTareasProyecto:
+    def __init__(self):
+        self.tareas = []
+
+    def agregar_tarea(self, nombre_tarea):
+        tarea = {"nombre": nombre_tarea, "completada": False}
+        self.tareas.append(tarea)
+
+    def marcar_completada(self, indice):
+        if 0 <= indice < len(self.tareas):
+            self.tareas[indice]["completada"] = True
+        else:
+            print("Índice de tarea fuera de rango.")
+
+    def ver_progreso(self):
+        if len(self.tareas) == 0:
+            print("El proyecto no tiene tareas.")
+        else:
+            tareas_completadas = sum(1 for tarea in self.tareas if tarea["completada"])
+            total_tareas = len(self.tareas)
+            progreso = (tareas_completadas / total_tareas) * 100
+            print(f"Progreso del proyecto: {progreso:.2f}%")
+
+# Ejemplo:
+gestor_proyecto = GestorTareasProyecto()
+
+# Agregar tareas al proyecto
+gestor_proyecto.agregar_tarea("Tarea 1")
+gestor_proyecto.agregar_tarea("Tarea 2")
+gestor_proyecto.agregar_tarea("Tarea 3")
+
+# Marcar una tarea como completada
+gestor_proyecto.marcar_completada(0)
+
+# Ver el progreso del proyecto
+gestor_proyecto.ver_progreso()
+
+
+
